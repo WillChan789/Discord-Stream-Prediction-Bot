@@ -4,6 +4,7 @@ const profileModel = require('../../models/profileSchema');
 const cooldowns = new Map();
 var pred_started = false;
 var user_preds = new Map();
+var pred_timer = false;
 
 module.exports = async (Discord, client, message) => {
     const prefix = process.env.PREFIX;
@@ -97,7 +98,7 @@ module.exports = async (Discord, client, message) => {
 
     time_stamp.set(message.author.id, curr_time);
     setTimeout(() => time_stamp.delete(message.author.id), cooldown_amount);
-    
+
     /*
     if (pred_started && command.name === "start") {
         return message.channel.send("A prediction has already been started. ");
@@ -108,12 +109,16 @@ module.exports = async (Discord, client, message) => {
     */
 
     try {
-        var cmdres = command.execute(message, args, cmd, client, Discord, profileData, pred_started, user_preds);
+        var cmdres = command.execute(message, args, cmd, client, Discord, profileData, pred_started, user_preds, pred_timer);
 
-        if (command.name === "start")
+        if (command.name === "start") {
             pred_started = true;
+            pred_timer = true;
+            setTimeout(() => pred_timer = false, 300 * 1000);
+        }
         if (command.name === "end" && pred_started) {
             pred_started = false;
+            pred_timer = false;
             user_preds.clear();
         }
         if (command.name === "predict") {
@@ -121,7 +126,7 @@ module.exports = async (Discord, client, message) => {
             var success;
             cast.then(function(value) {
                 success = value;
-                if (success) {
+                if (success && pred_timer) {
                     user_preds.set(message.author.id, {option: args[0], amount: args[1]});
                 }
             });

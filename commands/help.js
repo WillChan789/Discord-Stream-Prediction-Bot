@@ -3,7 +3,7 @@ module.exports = {
     aliases: [],
     permissions: [],
     description: "Show commands to user. ",
-    execute(message, args, cmd, client, discord, profileData, pred_started, user_preds) {
+    execute(message, args, cmd, client, discord, profileData, pred_started, user_preds, pred_timer) {
         const newEmbed = new discord.MessageEmbed()
         .setColor('#0b6eef')
         .setTitle('Discord Stream Prediction Help')
