@@ -97,40 +97,23 @@ module.exports = async (Discord, client, message) => {
 
     time_stamp.set(message.author.id, curr_time);
     setTimeout(() => time_stamp.delete(message.author.id), cooldown_amount);
-
+    
+    /*
     if (pred_started && command.name === "start") {
         return message.channel.send("A prediction has already been started. ");
     }
     if (!pred_started && command.name === "predict") {
         return message.channel.send("Prediction has not yet been started. ");
     }
+    */
 
     try {
-        var cmdres = command.execute(message, args, cmd, client, Discord, profileData);
+        var cmdres = command.execute(message, args, cmd, client, Discord, profileData, pred_started, user_preds);
 
         if (command.name === "start")
             pred_started = true;
         if (command.name === "end" && pred_started) {
             pred_started = false;
-            for (const user of user_preds) {
-                var pred = user[1].option;
-                if (pred == args[0]) {
-                    var winning = parseInt(user[1].amount) * 2;
-                    try {
-                        await profileModel.findOneAndUpdate(
-                            {
-                                userID: user[0],
-                            },
-                            {
-                                $inc: {
-                                    points: winning,
-                                }
-                            });
-                        } catch (err) {
-                            console.log(err);
-                        }
-                }
-            }
             user_preds.clear();
         }
         if (command.name === "predict") {
@@ -148,5 +131,5 @@ module.exports = async (Discord, client, message) => {
         console.log(err);
     }
 
-    //if (command) command.execute(message, args, cmd, client, Discord, profileData);
+    //if (command) command.execute(message, args, cmd, client, Discord, profileData, pred_started, user_preds);
 }

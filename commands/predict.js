@@ -5,10 +5,10 @@ module.exports = {
     aliases: ["pred"],
     permissions: [],
     description: "Join a discord prediction.",
-    async execute(message, args, cmd, client, discord, profileData) {
+    async execute(message, args, cmd, client, discord, profileData, pred_started, user_preds) {
         const option = parseInt(args[0]);
         const amount = args[1];
-        
+
         if (option > 2 || option < 1) {
             message.channel.send("Invalid option");
             return false;

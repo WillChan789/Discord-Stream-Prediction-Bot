@@ -1,14 +1,14 @@
 const profileModel = require('../models/profileSchema');
 
 module.exports = {
-    name: "more",
+    name: "daily",
     aliases: [],
-    cooldown: 3600,
+    cooldown: 72000,
     permissions: [],
-    description: "Give user random points.",
+    description: "Give user random daily points.",
     async execute(message, args, cmd, client, discord, profileData, pred_started, user_preds) {
-        const max = 500;
-        const min = 100;
+        const max = 1000;
+        const min = 750;
         const random = Math.floor(Math.random() * (max - min + 1) + min);
 
         const response = await profileModel.findOneAndUpdate({
