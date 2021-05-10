@@ -5,12 +5,14 @@ module.exports = {
     aliases: [],
     permissions: ["MANAGE_GUILD"],
     description: "Start a discord prediction.",
-    async execute(message, args, cmd, client, discord, profileData, pred_started, user_preds, pred_timer) {
+    async execute(message, args, cmd, client, discord, profileData, pred_started, user_preds, pred_timer, curr_pred) {
         if (!pred_started)
             return message.channel.send("Prediction has not yet been started. ");
 
         if (args.length != 1)
-            return message.channel.send("Incorrect number of args.")
+            return message.channel.send("Incorrect number of args.");
+        if (isNaN(args[0]))
+            return message.channel.send("Invalid choice.");
 
         for (const user of user_preds) {
             var pred = user[1].option;

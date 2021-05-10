@@ -5,6 +5,8 @@ const cooldowns = new Map();
 var pred_started = false;
 var user_preds = new Map();
 var pred_timer = false;
+var curr_pred = [];
+var reminder_to;
 
 module.exports = async (Discord, client, message) => {
     const prefix = process.env.PREFIX;
@@ -99,27 +101,26 @@ module.exports = async (Discord, client, message) => {
     time_stamp.set(message.author.id, curr_time);
     setTimeout(() => time_stamp.delete(message.author.id), cooldown_amount);
 
-    /*
-    if (pred_started && command.name === "start") {
-        return message.channel.send("A prediction has already been started. ");
-    }
-    if (!pred_started && command.name === "predict") {
-        return message.channel.send("Prediction has not yet been started. ");
-    }
-    */
-
     try {
-        var cmdres = command.execute(message, args, cmd, client, Discord, profileData, pred_started, user_preds, pred_timer);
+        var cmdres = command.execute(message, args, cmd, client, Discord, profileData, pred_started, user_preds, pred_timer, curr_pred);
 
         if (command.name === "start") {
             pred_started = true;
             pred_timer = true;
             setTimeout(() => pred_timer = false, 300 * 1000);
+            reminder_to = setTimeout(() => message.channel.send("One minute left to make a prediction."), 240 * 1000);
+            const q = message.content.split('"')[1];
+            const c1 = message.content.split('"')[2].slice(1).split(" ")[0];
+            const c2 = message.content.split('"')[2].slice(1).split(" ")[1];
+            curr_pred = [q, c1, c2];
+
         }
-        if (command.name === "end" && pred_started && args.length == 1) {
+        if (command.name === "end" && pred_started && args.length == 1 && !isNaN(args[0])) {
             pred_started = false;
             pred_timer = false;
             user_preds.clear();
+            curr_pred = [];
+            clearTimeout(reminder_to);
         }
         if (command.name === "predict") {
             var cast = Promise.resolve(cmdres);
