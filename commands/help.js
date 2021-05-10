@@ -10,7 +10,7 @@ module.exports = {
         .setDescription("Commands")
         .addFields(
             { name: "balance (bal):", value: "Check your balance. Usage: dbalance, dbal" },
-            { name: "more:", value: "Get a random amount of points every 30 minutes. Usage: dmore" },
+            { name: "more:", value: "Get a random amount of points every 60 minutes. Usage: dmore" },
             { name: "start:", value: 'Start a prediction. Usage: dstart "Will I win this game" yes no' },
             { name: "predict (pred):", value: "Make a prediction. Usage: dpredict 1 100, dpred 2 100"},
             { name: "end *requires Manage Server permission*:", value: "End the current prediction. Usage: dend 1, dend 2"},

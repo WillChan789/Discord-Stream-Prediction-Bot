@@ -1,3 +1,5 @@
+const profileModel = require('../models/profileSchema');
+
 module.exports = {
     name: "end",
     aliases: [],
@@ -6,6 +8,9 @@ module.exports = {
     async execute(message, args, cmd, client, discord, profileData, pred_started, user_preds, pred_timer) {
         if (!pred_started)
             return message.channel.send("Prediction has not yet been started. ");
+
+        if (args.length != 1)
+            return message.channel.send("Incorrect number of args.")
 
         for (const user of user_preds) {
             var pred = user[1].option;

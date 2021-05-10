@@ -116,7 +116,7 @@ module.exports = async (Discord, client, message) => {
             pred_timer = true;
             setTimeout(() => pred_timer = false, 300 * 1000);
         }
-        if (command.name === "end" && pred_started) {
+        if (command.name === "end" && pred_started && args.length == 1) {
             pred_started = false;
             pred_timer = false;
             user_preds.clear();
