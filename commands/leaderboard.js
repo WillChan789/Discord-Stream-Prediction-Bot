@@ -11,13 +11,16 @@ module.exports = {
         }).sort({
             points: -1,
         });
-        console.log(lb);
 
         const newEmbed = new discord.MessageEmbed()
         .setColor('#0b6eef')
         .setTitle('Discord Stream Prediction Leaderboard')
         .setDescription("Most Points in Server Sorted");
-        //for ()
+        for (var i = 0; i < lb.length; i++) {
+            newEmbed.addFields(
+                { name: `${i+1}:`, value: `${lb[i].userName} with ${lb[i].points} points`}
+            );
+        }
         message.channel.send(newEmbed);
     }
 }

@@ -18,6 +18,7 @@ module.exports = {
             { name: "daily:", value: "Get 750 - 1000 points every 20 hours. Usage: ddaily"},
             { name: "donate:", value: "Donate to developer. Usage: ddonate"},
             { name: "status:", value: "Check current active prediction. Usage: dstatus"},
+            { name: "leaderboard (lb):", value: "Shows ranking of users sorted by points. Usage: dleaderboard, dlb"},
 
 
 
