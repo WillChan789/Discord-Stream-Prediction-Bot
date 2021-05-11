@@ -18,12 +18,12 @@ module.exports = {
         var c1total = 0;
         var c2total = 0;
         for (const user of user_preds) {
-            var pred = user[1].option;
-            total += user[1].amount;
-            if (pred == 1)
-                c1total += user[1].amount;
-            else if (pred == 2)
-                c2total += user[1].amount;
+            var pred = parseInt(user[1].option);
+            total += parseInt(user[1].amount);
+            if (pred === 1)
+                c1total += parseInt(user[1].amount);
+            else if (pred === 2)
+                c2total += parseInt(user[1].amount);
         }
 
         var ratio = 0;
@@ -55,7 +55,7 @@ module.exports = {
         const newEmbed = new discord.MessageEmbed()
         .setColor('#0b6eef')
         .setTitle('Discord Stream Prediction')
-        .setDescription(`${message.author.username} has ended the prediction with option ${args[0]} winning.`);
+        .setDescription(`${message.author.username} has ended the prediction with option ${args[0]} winning ${ratio} times the points.`);
         message.channel.send(newEmbed);
     }
 }
