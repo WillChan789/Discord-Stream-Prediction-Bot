@@ -7,8 +7,8 @@ module.exports = {
         const newEmbed = new discord.MessageEmbed()
         .setColor('#0b6eef')
         .setTitle('Discord Stream Prediction Donate')
-        .setURL('https://paypal.me/WChan8?locale.x=en_US')
-        .setDescription('https://paypal.me/WChan8?locale.x=en_US');
+        .setURL('https://paypal.me/pools/c/8ziaAZmUdP')
+        .setDescription('https://paypal.me/pools/c/8ziaAZmUdP');
         message.channel.send(newEmbed);
     }
 }

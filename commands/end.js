@@ -33,7 +33,7 @@ module.exports = {
             ratio = (total/c2total).toFixed(1);
 
         for (const user of user_preds) {
-            var pred = user[1].option;
+            var pred = parseInt(user[1].option);
             if (pred == args[0]) {
                 var winning = parseInt(user[1].amount) * ratio;
                 try {

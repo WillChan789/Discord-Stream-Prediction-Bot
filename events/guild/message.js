@@ -102,7 +102,7 @@ module.exports = async (Discord, client, message) => {
     setTimeout(() => time_stamp.delete(message.author.id), cooldown_amount);
 
     try {
-        var cmdres = command.execute(message, args, cmd, client, Discord, profileData, pred_started, user_preds, pred_timer, curr_pred);
+        var cmdres = await command.execute(message, args, cmd, client, Discord, profileData, pred_started, user_preds, pred_timer, curr_pred);
 
         if (command.name === "start") {
             pred_started = true;
