@@ -7,12 +7,12 @@ module.exports = {
     description: "Start a discord prediction.",
     async execute(message, args, cmd, client, discord, profileData, pred_started, user_preds, pred_timer, curr_pred) {
         if (!pred_started)
-            return message.channel.send("Prediction has not yet been started. ");
+            return await message.channel.send("Prediction has not yet been started. ");
 
         if (args.length != 1)
-            return message.channel.send("Incorrect number of args.");
+            return await message.channel.send("Incorrect number of args.");
         if (isNaN(args[0]))
-            return message.channel.send("Invalid choice.");
+            return await message.channel.send("Invalid choice.");
 
         var total = 0;
         var c1total = 0;
