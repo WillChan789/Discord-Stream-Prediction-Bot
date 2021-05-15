@@ -19,6 +19,7 @@ module.exports = {
             { name: "donate:", value: "Donate to developer. Usage: ddonate"},
             { name: "status:", value: "Check current active prediction. Usage: dstatus"},
             { name: "leaderboard (lb):", value: "Shows ranking of users sorted by points. Usage: dleaderboard, dlb"},
+            { name: "give *requires Administrator permission*:", value: "Give mentioned user an amount of points. Usage: dgive @user 100"},
 
 
 
