@@ -6,6 +6,8 @@ module.exports = {
     permissions: ["ADMINISTRATOR"],
     description: "Give amount of points to a user.",
     async execute(message, args, cmd, client, discord, profileData, pred_started, user_preds, pred_timer, curr_pred) {
+        if (message.author.id != message.guild.ownerID)
+            return message.channel.send("You are not the server owner.");
         var user = message.mentions.users.firstKey();
         var amount = args[1];
 
