@@ -7,8 +7,8 @@ var user_preds = new Map();
 var pred_timer = false;
 var curr_pred = [];
 var reminder_to;
-var c1pool;
-var c2pool;
+var c1pool = 0;
+var c2pool = 0;
 
 module.exports = async (Discord, client, message) => {
     const prefix = process.env.PREFIX;
@@ -133,6 +133,10 @@ module.exports = async (Discord, client, message) => {
                 success = value;
                 if (success && pred_timer) {
                     user_preds.set(message.author.id, {option: args[0], amount: args[1]});
+                    if (args[0] == 1)
+                       c1pool += parseInt(args[1]);
+                    else
+                      c2pool += parseInt(args[1]);
                 }
             });
         }
