@@ -7,6 +7,8 @@ var user_preds = new Map();
 var pred_timer = false;
 var curr_pred = [];
 var reminder_to;
+var c1pool;
+var c2pool;
 
 module.exports = async (Discord, client, message) => {
     const prefix = process.env.PREFIX;
@@ -102,7 +104,7 @@ module.exports = async (Discord, client, message) => {
     setTimeout(() => time_stamp.delete(message.author.id), cooldown_amount);
 
     try {
-        var cmdres = await command.execute(message, args, cmd, client, Discord, profileData, pred_started, user_preds, pred_timer, curr_pred);
+        var cmdres = await command.execute(message, args, cmd, client, Discord, profileData, pred_started, user_preds, pred_timer, curr_pred, c1pool, c2pool);
 
         if (command.name === "start") {
             pred_started = true;
@@ -120,6 +122,8 @@ module.exports = async (Discord, client, message) => {
             pred_timer = false;
             user_preds.clear();
             curr_pred = [];
+            c1pool = 0;
+            c2pool = 0;
             clearTimeout(reminder_to);
         }
         if (command.name === "predict") {

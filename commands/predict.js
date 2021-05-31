@@ -5,7 +5,7 @@ module.exports = {
     aliases: ["pred"],
     permissions: [],
     description: "Join a discord prediction.",
-    async execute(message, args, cmd, client, discord, profileData, pred_started, user_preds, pred_timer) {
+    async execute(message, args, cmd, client, discord, profileData, pred_started, user_preds, pred_timer, c1pool, c2pool) {
         const option = parseInt(args[0]);
         const amount = args[1];
 

@@ -5,7 +5,7 @@ module.exports = {
     aliases: [],
     permissions: ["MANAGE_GUILD"],
     description: "Start a discord prediction.",
-    async execute(message, args, cmd, client, discord, profileData, pred_started, user_preds, pred_timer, curr_pred) {
+    async execute(message, args, cmd, client, discord, profileData, pred_started, user_preds, pred_timer, curr_pred, c1pool, c2pool) {
         if (!pred_started)
             return await message.channel.send("Prediction has not yet been started. ");
 

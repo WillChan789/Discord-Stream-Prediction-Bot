@@ -5,7 +5,7 @@ module.exports = {
     aliases: ['lb'],
     permissions: [],
     description: "View the leaderboard of points.",
-    async execute(message, args, cmd, client, discord, profileData, pred_started, user_preds, pred_timer, curr_pred) {
+    async execute(message, args, cmd, client, discord, profileData, pred_started, user_preds, pred_timer, curr_pred, c1pool, c2pool) {
         const lb = await profileModel.find({
             serverID: message.guild.id,
         }).sort({

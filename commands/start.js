@@ -3,7 +3,7 @@ module.exports = {
     aliases: [],
     permissions: [],
     description: "Start a discord prediction.",
-    execute(message, args, cmd, client, discord, profileData, pred_started, user_preds, pred_timer, curr_pred) {
+    execute(message, args, cmd, client, discord, profileData, pred_started, user_preds, pred_timer, curr_pred, c1pool, c2pool) {
         if (pred_started)
             return message.channel.send("A prediction has already been started. ");
 
