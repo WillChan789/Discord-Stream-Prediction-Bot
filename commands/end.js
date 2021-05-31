@@ -35,7 +35,10 @@ module.exports = {
         for (const user of user_preds) {
             var pred = parseInt(user[1].option);
             if (pred == args[0]) {
-                var winning = parseInt(user[1].amount) * ratio;
+                if (ratio > 1.1)
+                    var winning = parseInt(user[1].amount) * ratio;
+                else
+                    var winning = parseInt(user[1].amount) * 1.15;
                 try {
                     await profileModel.findOneAndUpdate(
                         {
