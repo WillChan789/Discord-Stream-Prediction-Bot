@@ -39,6 +39,7 @@ module.exports = {
                     var winning = parseInt(user[1].amount) * ratio;
                 else
                     var winning = parseInt(user[1].amount) * 1.15;
+                    winning = winning.toFixed(0);
                 try {
                     await profileModel.findOneAndUpdate(
                         {
